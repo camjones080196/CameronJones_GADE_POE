@@ -99,7 +99,14 @@
 -define:UNITY_EDITOR_WIN
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
+Assets/Scripts/Building.cs
+Assets/Scripts/FactoryBuilding.cs
 Assets/Scripts/GameEngine.cs
+Assets/Scripts/Map.cs
+Assets/Scripts/MeleeUnit.cs
+Assets/Scripts/RangedUnit.cs
+Assets/Scripts/ResourceBuilding.cs
+Assets/Scripts/Unit.cs
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.dll"

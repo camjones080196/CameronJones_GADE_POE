@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace CameronJones_GADE1B_A2
-{
+
     class FactoryBuilding : Building
     {
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
@@ -15,20 +14,80 @@ namespace CameronJones_GADE1B_A2
         int spawnX, spawnY;
         int xPos, yPos;
         Unit addUnit;
-        Random random = new Random();
+        System.Random random = new System.Random();
 
         //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 
-        public int UnitsToProduce { get => unitsToProduce; set => unitsToProduce = value; }
-        public int GameTicksPerProduction { get => gameTicksPerProduction; set => gameTicksPerProduction = value; }
-        public int XPos { get => xPos; set => xPos = value; }
-        public int YPos { get => yPos; set => yPos = value; }
-        public int SpawnX { get => spawnX; set => spawnX = value; }
-        public int SpawnY { get => spawnY; set => spawnY = value; }
+    public int UnitsToProduce
+    {
+        get
+        {
+            return unitsToProduce;
+        }
+        set
+        {
+            unitsToProduce = value;
+        }
+    }
+    public int GameTicksPerProduction
+    {
+        get
+        {
+            return gameTicksPerProduction;
+        }
+        set
+        {
+            gameTicksPerProduction = value;
+        }
+    }
+    public int XPos
+    {
+        get
+        {
+            return xPos;
+        }
+        set
+        {
+            xPos = value;
+        }
+    }
+    public int YPos
+    {
+        get
+        {
+            return yPos;
+        }
+        set
+        {
+            yPos = value;
+        }
+    }
+    public int SpawnX
+    {
+        get
+        {
+            return spawnX;
+        }
+        set
+        {
+            spawnX = value;
+        }
+    }
+    public int SpawnY
+    {
+        get
+        {
+            return spawnY;
+        }
+        set
+        {
+            spawnY = value;
+        }
+    }
 
-        //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
+    //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
-        public FactoryBuilding()
+    public FactoryBuilding()
         {
             XPos = 20;
             YPos = 20;
@@ -105,4 +164,4 @@ namespace CameronJones_GADE1B_A2
         }
 
     }
-}
+

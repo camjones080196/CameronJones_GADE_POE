@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace CameronJones_GADE1B_A2
-{
+
     abstract class Unit
     {
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
@@ -26,19 +24,152 @@ namespace CameronJones_GADE1B_A2
 
         //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 
-        public virtual int XPos { get => xPos; set => xPos = value; }
-        public virtual int YPos { get => yPos; set => yPos = value; }
-        public virtual int Maxhealth { get => maxHealth; set => maxHealth = value; }
-        public virtual int Currenthealth { get => currentHealth; set => currentHealth = value; }
-        public virtual int Speed { get => speed; set => speed = value; }
-        public virtual int Attack { get => attack; set => attack = value; }
-        public virtual int AttackRange { get => attackRange; set => attackRange = value; }
-        public virtual string Faction { get => faction; set => faction = value; }
-        public virtual char Symbol { get => symbol; set => symbol = value; }
-        public virtual bool InCombat { get => inCombat; set => inCombat = value; }
-        public virtual bool InRange { get => inRange; set => inRange = value; }
-        public virtual string Name { get => name; set => name = value; }
-        public virtual bool IsDead { get => isDead; set => isDead = value; }
+    public virtual int XPos
+    {
+        get
+        {
+            return xPos;
+        }
+        set
+        {
+            xPos = value;
+        }
+    }
+    public virtual int YPos
+    {
+        get
+        {
+            return yPos;
+        }
+        set
+        {
+            yPos = value;
+        }
+    }
+    public virtual int Maxhealth
+    {
+        get
+        {
+            return maxHealth;
+        }
+        set
+        {
+            maxHealth = value;
+        }
+    }
+    public virtual int Currenthealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            currentHealth = value;
+        }
+    }
+    public virtual int Speed
+    {
+        get
+        {
+            return speed;
+        }
+        set
+        {
+            speed = value;
+        }
+    }
+    public virtual int Attack
+    {
+        get
+        {
+            return attack;
+        }
+        set
+        {
+            attack = value;
+        }
+    }
+    public virtual int AttackRange
+    {
+        get
+        {
+            return attackRange;
+        }
+        set
+        {
+            attackRange = value;
+        }
+    }
+    public virtual string Faction
+    {
+        get
+        {
+            return faction;
+        }
+        set
+        {
+            faction = value;
+        }
+    }
+        public virtual char Symbol
+    {
+        get
+        {
+            return symbol;
+        }
+        set
+        {
+            symbol = value;
+        }
+    }
+    public virtual bool InCombat
+    {
+        get
+        {
+            return inCombat;
+        }
+        set
+        {
+            inCombat = value;
+        }
+    }
+    public virtual bool InRange
+    {
+        get
+        {
+            return inRange;
+        }
+
+        set
+        {
+            inRange = value;
+        }
+    }
+    public virtual string Name
+    {
+        get
+        {
+            return name;
+        }
+
+        set
+        {
+            name = value;
+        }
+    }
+    public virtual bool IsDead
+    {
+        get
+        {
+            return isDead;
+        }
+
+        set
+        {
+            isDead = value;
+        }
+    }
        
 
         //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
@@ -75,4 +206,4 @@ namespace CameronJones_GADE1B_A2
         public abstract override string ToString();
     }
     
-}
+

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace CameronJones_GADE1B_A2
-{
+
     abstract class Building
     {
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
@@ -16,18 +15,84 @@ namespace CameronJones_GADE1B_A2
         private char symbol;
         private char buildingSymbol;
 
-        //**************************************************************************************************************** G&S's *************************************************************************************************************************************
+    //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 
-        public int Xpos { get => xpos; set => xpos = value; }
-        public int Ypos { get => ypos; set => ypos = value; }
-        public int Health { get => health; set => health = value; }
-        public string Faction { get => faction; set => faction = value; }
-        public char Symbol { get => symbol; set => symbol = value; }
-        public char Buildingsymbol { get => buildingSymbol; set => buildingSymbol = value; }
+    public int Xpos
+    {
+        get
+        {
+            return xpos;
+        }
 
-        //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
+        set
+        {
+            xpos = value;
+        }
+    }
+    public int Ypos
+    {
+        get
+        {
+            return ypos;
+        }
 
-        public Building()
+        set
+        {
+            ypos = value;
+        }
+    }
+    public int Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            health = value;
+        }
+    }
+    public string Faction
+    {
+        get
+        {
+            return faction;
+        }
+
+        set
+        {
+            faction = value;
+        }
+    }
+    public char Symbol
+    {
+        get
+        {
+            return symbol;
+        }
+
+        set
+        {
+            symbol = value;
+        }
+    }
+    public char Buildingsymbol
+    {
+        get
+        {
+            return buildingSymbol;
+        }
+
+        set
+        {
+            buildingSymbol = value;
+        }
+    }
+
+    //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
+
+    public Building()
         {
             //code
         }
@@ -43,4 +108,4 @@ namespace CameronJones_GADE1B_A2
        
 
     }
-}
+

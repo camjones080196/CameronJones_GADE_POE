@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace CameronJones_GADE1B_A2
-{
+
     class MeleeUnit : Unit
     {
         //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
@@ -46,6 +45,8 @@ namespace CameronJones_GADE1B_A2
 
         public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
         {
+        if (currentUnit != null && tempenemyUnit != null)
+        {
             int xdiff, ydiff, bigger;
 
             xdiff = currentUnit.XPos - tempenemyUnit.XPos;
@@ -63,6 +64,7 @@ namespace CameronJones_GADE1B_A2
                     currentUnit.InRange = false;
                 }
             }
+        }
             return currentUnit.InRange;
         }
 
@@ -98,9 +100,13 @@ namespace CameronJones_GADE1B_A2
             tempenemyUnit.Currenthealth = tempenemyUnit.Currenthealth - this.Attack;
         }
 
-        public override int Move(Unit currentUnit, Unit tempenemyUnit)
+    public override int Move(Unit currentUnit, Unit tempenemyUnit)
+    {
+        int xdiff, ydiff, move = 0;
+
+        if (currentUnit != null && tempenemyUnit != null)
         {
-            int xdiff, ydiff, move = 0;
+
 
             xdiff = currentUnit.XPos - tempenemyUnit.XPos;
             ydiff = currentUnit.YPos - tempenemyUnit.YPos;
@@ -111,7 +117,7 @@ namespace CameronJones_GADE1B_A2
                 {
                     move = 1;
                 }
-                else if(currentUnit.XPos + 1 != 20)
+                else if (currentUnit.XPos + 1 != 20)
                 {
                     move = 2;
                 }
@@ -122,7 +128,7 @@ namespace CameronJones_GADE1B_A2
                 {
                     move = 3;
                 }
-                else if(currentUnit.YPos + 1 != 20)
+                else if (currentUnit.YPos + 1 != 20)
                 {
                     move = 4;
                 }
@@ -131,13 +137,14 @@ namespace CameronJones_GADE1B_A2
                     move = 5;
                 }
             }
-
-            return move;
         }
 
-        public override int RunAway()
+        return move;
+    }
+
+    public override int RunAway()
         {
-            Random r = new Random();
+            System.Random r = new System.Random();
             int move = r.Next(1, 4);
             return move;
         }
@@ -207,4 +214,4 @@ namespace CameronJones_GADE1B_A2
         }
 
     }
-}
+

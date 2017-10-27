@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace CameronJones_GADE1B_A2
-{
+
     class RangedUnit : Unit
     {
         //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
@@ -44,7 +43,9 @@ namespace CameronJones_GADE1B_A2
             return currentUnit.IsDead;
         }
 
-        public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
+    public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
+    {
+        if (currentUnit != null && tempenemyUnit != null)
         {
             int xdiff, ydiff, bigger;
 
@@ -54,7 +55,7 @@ namespace CameronJones_GADE1B_A2
             if (Math.Abs(xdiff) > Math.Abs(ydiff))
             {
                 bigger = Math.Abs(xdiff);
-                if (bigger <= 2)
+                if (bigger <= 1)
                 {
                     currentUnit.InRange = true;
                 }
@@ -63,10 +64,11 @@ namespace CameronJones_GADE1B_A2
                     currentUnit.InRange = false;
                 }
             }
-            return currentUnit.InRange;
         }
+        return currentUnit.InRange;
+    }
 
-        public override Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit)
+    public override Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit)
         {
 
             int xdiff, ydiff, totalDiff, smaller = 1000000000;
@@ -100,7 +102,11 @@ namespace CameronJones_GADE1B_A2
 
         public override int Move(Unit currentUnit, Unit tempenemyUnit)
         {
-            int xdiff, ydiff, move = 0;
+        int xdiff, ydiff, move = 0;
+
+        if (currentUnit != null && tempenemyUnit != null)
+        {
+            
 
             xdiff = currentUnit.XPos - tempenemyUnit.XPos;
             ydiff = currentUnit.YPos - tempenemyUnit.YPos;
@@ -131,13 +137,14 @@ namespace CameronJones_GADE1B_A2
                     move = 5;
                 }
             }
+        }
 
             return move;
         }
 
         public override int RunAway()
         {
-            Random r = new Random();
+            System.Random r = new System.Random();
             int move = r.Next(1, 4);
             return move;
         }
@@ -209,4 +216,4 @@ namespace CameronJones_GADE1B_A2
         }
     }
 
-}
+

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace CameronJones_GADE1B_A2
-{
+
     class ResourceBuilding : Building
     {
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
@@ -14,16 +13,63 @@ namespace CameronJones_GADE1B_A2
         int resourcesPerGameTick;
         int resourcesRemaining = 50;
         int xPos, yPos;
-        Random r = new Random();
+        System.Random r = new System.Random();
 
 
         //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 
-        public char ResourceType { get => resourceType; set => resourceType = value; }
-        public int ResourcesPerGameTick { get => resourcesPerGameTick; set => resourcesPerGameTick = value; }
-        public int ResourcesRemaining { get => resourcesRemaining; set => resourcesRemaining = value; }
-        public int XPos { get => xPos; set => xPos = value; }
-        public int YPos { get => yPos; set => yPos = value; }
+        public char ResourceType
+        {
+            get
+            {
+                return resourceType;
+            }
+            set
+            {
+                resourceType = value;
+            }
+        }
+        public int ResourcesPerGameTick
+        {
+            get
+            {
+                return resourcesPerGameTick;
+            }
+            set
+            {
+                resourcesPerGameTick = value;
+            }
+        }
+        public int ResourcesRemaining {
+            get
+            {
+                return resourcesRemaining;
+            }
+            set
+            {
+                resourcesRemaining = value;
+            }
+        }
+        public int XPos {
+            get
+            {
+                return xPos;
+            }
+            set
+            {
+                xPos = value;
+            }
+        }
+        public int YPos {
+            get
+            {
+                return yPos;
+            }
+            set
+            {
+                yPos = value;
+            }
+        }
 
         //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
@@ -53,4 +99,4 @@ namespace CameronJones_GADE1B_A2
             resourcesRemaining = resourcesRemaining - resourcesPerGameTick;
         }
     }
-}
+

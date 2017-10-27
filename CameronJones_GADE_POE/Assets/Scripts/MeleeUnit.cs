@@ -39,9 +39,9 @@ namespace CameronJones_GADE1B_A2
         {
             if (currentUnit.Currenthealth <= 0)
             {
-                currentUnit.IsDead = true;
+                IsDead = true;
             }
-            return currentUnit.IsDead;
+            return IsDead;
         }
 
         public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
@@ -68,11 +68,12 @@ namespace CameronJones_GADE1B_A2
 
         public override Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit)
         {
+            
             int xdiff, ydiff, totalDiff, smaller = 1000000000;
 
             for (int i = 0; i < unitTemp.Length; i++)
             {
-                if (unitTemp[i] != null)
+                if (unitTemp[i] != null && currentUnit.Faction != unitTemp[i].Faction)
                 {
                     xdiff = currentUnit.XPos - unitTemp[i].XPos;
                     ydiff = currentUnit.YPos - unitTemp[i].YPos;
@@ -103,28 +104,34 @@ namespace CameronJones_GADE1B_A2
 
             xdiff = currentUnit.XPos - tempenemyUnit.XPos;
             ydiff = currentUnit.YPos - tempenemyUnit.YPos;
+
             if (xdiff > ydiff)
             {
-                if (xdiff > 0)
+                if (xdiff > 0 && currentUnit.XPos - 1 != 0)
                 {
                     move = 1;
                 }
-                else
+                else if(currentUnit.XPos + 1 != 20)
                 {
                     move = 2;
                 }
             }
             else
             {
-                if (ydiff > 0)
+                if (ydiff > 0 && currentUnit.YPos - 1 != 0)
                 {
                     move = 3;
                 }
-                else
+                else if(currentUnit.YPos + 1 != 20)
                 {
                     move = 4;
                 }
+                else
+                {
+                    move = 5;
+                }
             }
+
             return move;
         }
 

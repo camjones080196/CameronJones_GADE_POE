@@ -68,23 +68,24 @@ namespace CameronJones_GADE1B_A2
 
         public override Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit)
         {
+
             int xdiff, ydiff, totalDiff, smaller = 1000000000;
 
             for (int i = 0; i < unitTemp.Length; i++)
             {
-                if(unitTemp[i] != null)
-                { 
-                xdiff = currentUnit.XPos - unitTemp[i].XPos;
-                ydiff = currentUnit.YPos - unitTemp[i].YPos;
-                totalDiff = Math.Abs(xdiff) + Math.Abs(ydiff);
-                if (totalDiff != 0)
+                if (unitTemp[i] != null && currentUnit.Faction != unitTemp[i].Faction)
                 {
-                    if (totalDiff < smaller)
+                    xdiff = currentUnit.XPos - unitTemp[i].XPos;
+                    ydiff = currentUnit.YPos - unitTemp[i].YPos;
+                    totalDiff = Math.Abs(xdiff) + Math.Abs(ydiff);
+                    if (totalDiff != 0)
                     {
-                        tempenemyunit = unitTemp[i];
-                        smaller = totalDiff;
+                        if (totalDiff < smaller)
+                        {
+                            tempenemyunit = unitTemp[i];
+                            smaller = totalDiff;
+                        }
                     }
-                }
                 }
 
             }
@@ -103,28 +104,34 @@ namespace CameronJones_GADE1B_A2
 
             xdiff = currentUnit.XPos - tempenemyUnit.XPos;
             ydiff = currentUnit.YPos - tempenemyUnit.YPos;
+
             if (xdiff > ydiff)
             {
-                if (xdiff > 0)
+                if (xdiff > 0 && currentUnit.XPos - 1 != 0)
                 {
                     move = 1;
                 }
-                else
+                else if (currentUnit.XPos + 1 != 20)
                 {
                     move = 2;
                 }
             }
             else
             {
-                if (ydiff > 0)
+                if (ydiff > 0 && currentUnit.YPos - 1 != 0)
                 {
                     move = 3;
                 }
-                else
+                else if (currentUnit.YPos + 1 != 20)
                 {
                     move = 4;
                 }
+                else
+                {
+                    move = 5;
+                }
             }
+
             return move;
         }
 

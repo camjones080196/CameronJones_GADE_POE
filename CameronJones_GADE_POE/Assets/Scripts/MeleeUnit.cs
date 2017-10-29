@@ -32,18 +32,23 @@ using UnityEngine;
             //code
         }
 
-        //**************************************************************************************************************** Methods *************************************************************************************************************************************
+    //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
-        public override bool AmDead(Unit currentUnit)
+    public override bool AmDead(Unit currentUnit)
+    {
+        if (currentUnit.Currenthealth <= 0)
         {
-            if (currentUnit.Currenthealth <= 0)
-            {
-                IsDead = true;
-            }
-            return IsDead;
+            currentUnit.IsDead = true;
+        }
+        else
+        {
+            currentUnit.IsDead = false;
         }
 
-        public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
+        return currentUnit.IsDead;
+    }
+
+    public override bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit)
         {
         if (currentUnit != null && tempenemyUnit != null)
         {

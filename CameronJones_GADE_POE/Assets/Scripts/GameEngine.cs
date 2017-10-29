@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameEngine : MonoBehaviour
@@ -18,7 +19,7 @@ public class GameEngine : MonoBehaviour
     int arraySize = 10;
     string MapString = "";
     int GameTick = 0;
-    int frameRate = 60;
+    int frameRate = 120;
 
 
     //**************************************************************************************************************** G&S's *************************************************************************************************************************************
@@ -231,30 +232,6 @@ public class GameEngine : MonoBehaviour
         Instantiate(Resources.Load("Resource_Building"), new Vector3(0, 0, -1), Quaternion.identity);
         Instantiate(Resources.Load("Factory_Building"), new Vector3(19, 19, -1), Quaternion.identity);
 
-        /*for (int i = 0; i < map.ArrUnit.Length; i++)
-        {
-            if (map.ArrUnit[i] != null)
-            {
-                if (map.ArrUnit[i].Symbol == 'M')
-                {
-                    Instantiate(Resources.Load("Hero_Melee"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, 0), Quaternion.identity);
-                }
-                if (map.ArrUnit[i].Symbol == 'm')
-                {
-                    Instantiate(Resources.Load("Enemy_Melee"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, 0), Quaternion.identity);
-                }
-                if (map.ArrUnit[i].Symbol == 'R')
-                {
-                    Instantiate(Resources.Load("Hero_Ranged"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, 0), Quaternion.identity);
-                }
-                if (map.ArrUnit[i].Symbol == 'r')
-                {
-                    Instantiate(Resources.Load("Enemy_Ranged"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, 0), Quaternion.identity);
-                }
-            }
-        }*/
-
-
     }
 	
 	// Update is called once per frame
@@ -265,6 +242,57 @@ public class GameEngine : MonoBehaviour
         if (frameRate % GameTick == 0)
         {
             PlayGame();
+            Redraw();
         }
 	}
+
+    void Redraw()
+    {
+        /*GameObject[] toDelete = GameObject.FindGameObjectsWithTag("ToDelete");
+        foreach (GameObject temp in toDelete)
+        {
+            Destroy(temp.gameObject);
+        }*/
+
+        for(int i = 0; i < map.ArrUnit.Length; i++)
+        {
+            if(!map.ArrUnit[i].AmDead(map.ArrUnit[i]))
+            {
+                if (map.ArrUnit[i] != null)
+                {
+                    if (map.ArrUnit[i].Symbol == 'M')
+                    {
+                        Instantiate(Resources.Load("Hero_Melee"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                        GameObject hp = (GameObject)Instantiate(Resources.Load(determineHP(map.ArrUnit[i].Currenthealth, map.ArrUnit[i].Maxhealth)), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                    }
+                    if (map.ArrUnit[i].Symbol == 'm')
+                    {
+                        Instantiate(Resources.Load("Enemy_Melee"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                        GameObject hp = (GameObject)Instantiate(Resources.Load(determineHP(map.ArrUnit[i].Currenthealth, map.ArrUnit[i].Maxhealth)), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                    }
+                    if (map.ArrUnit[i].Symbol == 'R')
+                    {
+                        Instantiate(Resources.Load("Hero_Ranged"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                        GameObject hp = (GameObject)Instantiate(Resources.Load(determineHP(map.ArrUnit[i].Currenthealth, map.ArrUnit[i].Maxhealth)), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                    }
+                    if (map.ArrUnit[i].Symbol == 'r')
+                    {
+                        Instantiate(Resources.Load("Enemy_Ranged"), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                        GameObject hp = (GameObject)Instantiate(Resources.Load(determineHP(map.ArrUnit[i].Currenthealth, map.ArrUnit[i].Maxhealth)), new Vector3(map.ArrUnit[i].XPos, map.ArrUnit[i].YPos, -1), Quaternion.identity);
+                    }
+                }
+            }
+        }
+    }
+
+    string determineHP(int hp, int Maxhp)
+    {
+        string temp = "hp";
+        double HPpercentage = ((double)hp / (double)Maxhp) * 20;
+        HPpercentage = Math.Ceiling(HPpercentage);
+        temp += Convert.ToInt32(HPpercentage);
+        return temp;
+    }
+
+
 }

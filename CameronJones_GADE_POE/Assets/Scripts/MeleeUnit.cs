@@ -215,7 +215,7 @@ using UnityEngine;
             
         public override string ToString()
         {
-            return name + "," + currentHealth + "," + attack + "," + attackRange + "," + speed + "," + xPos + "," + yPos;
+            return Name + "," + Currenthealth + "," + Attack + "," + AttackRange + "," + Speed + "," + XPos + "," + YPos;
         }
 
     }

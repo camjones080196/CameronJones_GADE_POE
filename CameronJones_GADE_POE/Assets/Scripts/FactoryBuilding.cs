@@ -10,7 +10,7 @@ using UnityEngine;
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
 
         int unitsToProduce = 10;
-        int gameTicksPerProduction = 5;
+        int gameTicksPerProduction = 60;
         int spawnX, spawnY;
         int xPos, yPos;
         Unit addUnit;
@@ -89,8 +89,8 @@ using UnityEngine;
 
     public FactoryBuilding()
         {
-            XPos = 20;
-            YPos = 20;
+            XPos = 19;
+            YPos = 19;
             Buildingsymbol = '@';
         }
 
@@ -122,13 +122,13 @@ using UnityEngine;
                         if (number2 % 2 == 0)
                         {
                             Faction = "Hero";
-                            Symbol = 'M';
+                            Symbol = '$';
                         }
 
                         if (number2 % 2 != 0)
                         {
                             Faction = "Enemy";
-                            Symbol = 'm';
+                            Symbol = '%';
                         }
 
                     addUnit = new MeleeUnit(spawnX, spawnY, Faction, Symbol);
@@ -145,13 +145,13 @@ using UnityEngine;
                         if (number2 % 2 == 0)
                         {
                             Faction = "Hero";
-                            Symbol = 'R';
+                            Symbol = '^';
                         }
 
                         if (number2 % 2 != 0)
                         {
                             Faction = "Enemy";
-                            Symbol = 'r';
+                            Symbol = '&';
                         }
 
                         addUnit = new RangedUnit(spawnX, spawnY, Faction, Symbol);

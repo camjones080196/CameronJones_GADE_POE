@@ -5,8 +5,8 @@ using System.Text;
 using UnityEngine;
 
 
-    abstract class Building
-    {
+    abstract class Building : MonoBehaviour
+{
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
         private int xpos;
         private int ypos;

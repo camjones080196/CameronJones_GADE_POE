@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 
-    abstract class Unit
-    {
+    abstract class Unit : MonoBehaviour
+{
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
 
-        protected string name = "";
-        protected int xPos = 0;
-        protected int yPos = 0;
-        protected int maxHealth = 100;
-        protected int currentHealth = 0;
-        protected int speed = 0;
-        protected int attack = 0;
-        protected int attackRange = 0;
-        protected string faction = "";
-        protected char symbol = '^';
-        protected bool inCombat = false;
-        protected bool inRange = false;
-        protected bool isDead = false;
+        private new string name = "";
+    private int xPos = 0;
+    private int yPos = 0;
+    private int maxHealth = 100;
+    private int currentHealth = 0;
+    private int speed = 0;
+    private int attack = 0;
+    private int attackRange = 0;
+    private string faction = "";
+    private char symbol = '^';
+    private bool inCombat = false;
+    private bool inRange = false;
+    private bool isDead = false;
 
         //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 

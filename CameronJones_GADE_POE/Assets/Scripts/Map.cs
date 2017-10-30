@@ -17,7 +17,7 @@ using UnityEngine;
 
     //**************************************************************************************************************** G&S's *************************************************************************************************************************************
 
-    public char[,] ArrMap
+   public char[,] ArrMap
     {
         get
         {
@@ -41,90 +41,151 @@ using UnityEngine;
         }
     }
 
-        //**************************************************************************************************************** Methods *************************************************************************************************************************************
+    //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
-        public Unit[] PopulateBattlefield()
+    public void PopulateBattlefield()
+    {
+        FactoryBuilding factory = new FactoryBuilding();
+        ResourceBuilding resource = new ResourceBuilding();
+
+        for (int j = 0; j < 20; j++)
         {
-            FactoryBuilding factory = new FactoryBuilding();
-            ResourceBuilding resource = new ResourceBuilding();
-
-            for (int j = 0; j < 20; j++)
+            for (int i = 0; i < 20; i++)
             {
-                for (int i = 0; i < 20; i++)
-                {
-                    arrMap[j, i] = ',';
-                }
+                arrMap[j, i] = ',';
             }
+        }
 
-            arrMap[0, 0] = resource.Buildingsymbol;
-            arrMap[19, 19] = factory.Buildingsymbol;
+        arrMap[0, 0] = resource.Buildingsymbol;
+        arrMap[19, 19] = factory.Buildingsymbol;
 
-            for (int i = 0; i < ArrUnit.Length; i++)
+        for (int i = 0; i < ArrUnit.Length; i++)
+        {
+            int number = random.Next(1, 10);
+            xpos = random.Next(1, 20);
+            ypos = random.Next(1, 20);
+
+            if (arrMap[xpos, ypos] != '#' && arrMap[xpos, ypos] != '@')
             {
-                int number = random.Next(1, 10);
-                xpos = random.Next(1, 20);
-                ypos = random.Next(1, 20);
-
-                if (arrMap[xpos, ypos] != '#' && arrMap[xpos, ypos] != '@')
+                if (number % 2 == 0 && arrMap[xpos, ypos] == ',')
                 {
-                    if (number % 2 == 0 && arrMap[xpos, ypos] == ',')
+                    int number2 = random.Next(1, 10);
+
+                    if (number2 % 2 == 0)
                     {
-                        int number2 = random.Next(1, 10);
-
-                        if (number2 % 2 == 0)
-                        {
-                            Faction = "Hero";
-                            Symbol = 'M';
-                        }
-
-                        if (number2 % 2 != 0)
-                        {
-                            Faction = "Enemy";
-                            Symbol = 'm';
-                        }
-
-                        ArrUnit[i] = new MeleeUnit(xpos, ypos, Faction, Symbol);
-                        arrMap[xpos, ypos] = Symbol;
+                        Faction = "Hero";
+                        Symbol = '$';
                     }
 
-                    else if (number % 2 != 0 && arrMap[xpos, ypos] == ',')
+                    if (number2 % 2 != 0)
                     {
-                        int number2 = random.Next(1, 10);
-
-                        if (number2 % 2 == 0)
-                        {
-                            Faction = "Hero";
-                            Symbol = 'R';
-                        }
-
-                        if (number2 % 2 != 0)
-                        {
-                            Faction = "Enemy";
-                            Symbol = 'r';
-                        }
-
-                        xpos = random.Next(1, 20);
-                        ypos = random.Next(1, 20);
-
-                        ArrUnit[i] = new RangedUnit(xpos, ypos, Faction, Symbol);
-                        arrMap[xpos, ypos] = Symbol;
-                    }
-                    else
-                    {
-                        i--;
+                        Faction = "Enemy";
+                        Symbol = '%';
                     }
 
+                    ArrUnit[i] = new MeleeUnit(xpos, ypos, Faction, Symbol);
+                    arrMap[xpos, ypos] = Symbol;
+                }
+
+                else if (number % 2 != 0 && arrMap[xpos, ypos] == ',')
+                {
+                    int number2 = random.Next(1, 10);
+
+                    if (number2 % 2 == 0)
+                    {
+                        Faction = "Hero";
+                        Symbol = '^';
+                    }
+
+                    if (number2 % 2 != 0)
+                    {
+                        Faction = "Enemy";
+                        Symbol = '&';
+                    }
+
+                    xpos = random.Next(1, 20);
+                    ypos = random.Next(1, 20);
+
+                    ArrUnit[i] = new RangedUnit(xpos, ypos, Faction, Symbol);
+                    arrMap[xpos, ypos] = Symbol;
                 }
                 else
                 {
                     i--;
                 }
+
             }
-            
-
-            return ArrUnit;
-
+            else
+            {
+                i--;
+            }
         }
+
+
+        /*for (int i = 0; i < ArrUnit.Length; i++)
+        {
+            int number = random.Next(1, 10);
+            xpos = random.Next(1, 20);
+            ypos = random.Next(1, 20);
+
+            if (xpos + ypos != 0 && xpos + ypos != 38)
+            {
+                if (number % 2 == 0)
+                {
+                    int number2 = random.Next(1, 10);
+
+                    if (number2 % 2 == 0)
+                    {
+                        Faction = "Hero";
+                        Symbol = '$';
+                    }
+
+                    if (number2 % 2 != 0)
+                    {
+                        Faction = "Enemy";
+                        Symbol = '%';
+                    }
+
+                    ArrUnit[i] = new MeleeUnit(xpos, ypos, Faction, Symbol);
+                    arrMap[xpos, ypos] = Symbol;
+                }
+
+                else if (number % 2 != 0)
+                {
+                    int number2 = random.Next(1, 10);
+
+                    if (number2 % 2 == 0)
+                    {
+                        Faction = "Hero";
+                        Symbol = '^';
+                    }
+
+                    if (number2 % 2 != 0)
+                    {
+                        Faction = "Enemy";
+                        Symbol = '&';
+                    }
+
+                    xpos = random.Next(1, 20);
+                    ypos = random.Next(1, 20);
+
+                    ArrUnit[i] = new RangedUnit(xpos, ypos, Faction, Symbol);
+                    arrMap[xpos, ypos] = Symbol;
+                }
+                else
+                {
+                    i--;
+                }
+
+            }
+            else
+            {
+                i--;
+            }
+
+
+        }*/
+    }
 
         public void UnitMove(Unit unit, int destx, int desty)
         {
@@ -142,7 +203,7 @@ using UnityEngine;
             unit.YPos = newy;
         }
 
-        public string redrawMap()
+        /*public string redrawMap()
         {
             string gameWorld = "";
 
@@ -157,7 +218,7 @@ using UnityEngine;
             }
 
             return gameWorld;
-        }
+        }*/
 
        
 

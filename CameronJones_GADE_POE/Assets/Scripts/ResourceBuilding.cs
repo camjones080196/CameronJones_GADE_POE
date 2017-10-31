@@ -12,7 +12,7 @@ using UnityEngine;
         char resourceType;
         int resourcesPerGameTick;
         int resourcesRemaining = 50;
-        int xPos, yPos;
+        int xPos, yPos, resourceHp, resourceMaxHp = 100;
         System.Random r = new System.Random();
 
 
@@ -70,14 +70,38 @@ using UnityEngine;
                 yPos = value;
             }
         }
+    public int ResourceHP
+    {
+        get
+        {
+            return resourceHp;
+        }
+        set
+        {
+            resourceHp = value;
+        }
+    }
 
-        //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
+    public int ResourceMaxHP
+    {
+        get
+        {
+            return resourceMaxHp;
+        }
+        set
+        {
+            resourceHp = value;
+        }
+    }
 
-        public ResourceBuilding()
+    //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
+
+    public ResourceBuilding()
         {
             XPos = 0;
             YPos = 0;
             Buildingsymbol = '#';
+            resourceHp = resourceMaxHp;
         }
 
         ~ResourceBuilding()
@@ -92,7 +116,23 @@ using UnityEngine;
             return "Resource type: " + resourceType;
         }
 
-        public void GenerateResource()
+    public bool AmDead(int HP)
+    {
+        bool dead;
+
+        if (HP <= 0)
+        {
+            dead = true;
+        }
+        else
+        {
+            dead = false;
+        }
+
+        return dead;
+    }
+
+    public void GenerateResource()
         {
 
             resourcesPerGameTick = r.Next(1, 3);

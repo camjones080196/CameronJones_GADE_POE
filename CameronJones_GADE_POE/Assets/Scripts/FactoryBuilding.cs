@@ -10,9 +10,9 @@ using UnityEngine;
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
 
         int unitsToProduce = 10;
-        int gameTicksPerProduction = 60;
+        int gameTicksPerProduction = 250;
         int spawnX, spawnY;
-        int xPos, yPos;
+        int xPos, yPos, factoryHp, factoryMaxHp = 100;
         Unit addUnit;
         System.Random random = new System.Random();
 
@@ -84,6 +84,29 @@ using UnityEngine;
             spawnY = value;
         }
     }
+    public int FactoryHP
+    {
+        get
+        {
+            return factoryHp;
+        }
+        set
+        {
+            factoryHp = value;
+        }
+    }
+
+    public int FactoryMaxHP
+    {
+        get
+        {
+            return factoryMaxHp;
+        }
+        set
+        {
+            factoryMaxHp = value;
+        }
+    }
 
     //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
@@ -92,6 +115,7 @@ using UnityEngine;
             XPos = 19;
             YPos = 19;
             Buildingsymbol = '@';
+            factoryHp = factoryMaxHp;
         }
 
         ~FactoryBuilding()
@@ -106,7 +130,23 @@ using UnityEngine;
             return Xpos + ", " + Ypos + ", " + Health + ", " + Faction + ", " + Symbol;
         }
 
-        public Unit UnitSpawn()
+    public bool AmDead(int HP)
+    {
+        bool dead;
+
+        if (HP <= 0)
+        {
+            dead = true;
+        }
+        else
+        {
+            dead = false;
+        }
+
+        return dead;
+    }
+
+    public Unit UnitSpawn()
         {
             if(unitsToProduce > 0)
             {

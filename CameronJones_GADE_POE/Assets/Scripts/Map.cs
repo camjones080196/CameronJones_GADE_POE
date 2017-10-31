@@ -193,8 +193,8 @@ using UnityEngine;
             int currentx = unit.XPos;
             int currenty = unit.YPos;
 
-            arrMap[currentx, currenty] = ',';
-            arrMap[destx, desty] = sym;
+           //arrMap[currentx, currenty] = ',';
+            //arrMap[destx, desty] = sym;
         }
 
         public void UpdateUnit(Unit unit, int newx, int newy)

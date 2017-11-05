@@ -9,10 +9,9 @@ using UnityEngine;
     {
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
 
-        int unitsToProduce = 10;
+        int unitsToProduce = 20;
         int gameTicksPerProduction = 250;
         int spawnX, spawnY;
-        int xPos, yPos, factoryHp, factoryMaxHp = 100;
         Unit addUnit;
         System.Random random = new System.Random();
 
@@ -40,28 +39,7 @@ using UnityEngine;
             gameTicksPerProduction = value;
         }
     }
-    public int XPos
-    {
-        get
-        {
-            return xPos;
-        }
-        set
-        {
-            xPos = value;
-        }
-    }
-    public int YPos
-    {
-        get
-        {
-            return yPos;
-        }
-        set
-        {
-            yPos = value;
-        }
-    }
+   
     public int SpawnX
     {
         get
@@ -84,38 +62,17 @@ using UnityEngine;
             spawnY = value;
         }
     }
-    public int FactoryHP
-    {
-        get
-        {
-            return factoryHp;
-        }
-        set
-        {
-            factoryHp = value;
-        }
-    }
-
-    public int FactoryMaxHP
-    {
-        get
-        {
-            return factoryMaxHp;
-        }
-        set
-        {
-            factoryMaxHp = value;
-        }
-    }
+   
 
     //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
-    public FactoryBuilding()
+    public FactoryBuilding(string faction, int xpos, int ypos)
         {
-            XPos = 19;
-            YPos = 19;
-            Buildingsymbol = '@';
-            factoryHp = factoryMaxHp;
+        Buildingsymbol = '@';
+        HP = MaxHP;
+        Faction = faction;
+        Xpos = xpos;
+        Ypos = ypos;
         }
 
         ~FactoryBuilding()
@@ -127,7 +84,7 @@ using UnityEngine;
 
         public override string ToString()
         {
-            return Xpos + ", " + Ypos + ", " + Health + ", " + Faction + ", " + Symbol;
+            return Xpos + ", " + Ypos + ", " + HP + ", " + Faction + ", " + Symbol;
         }
 
     public bool AmDead(int HP)
@@ -146,57 +103,48 @@ using UnityEngine;
         return dead;
     }
 
-    public Unit UnitSpawn()
+    public Unit UnitSpawn(string faction)
         {
             if(unitsToProduce > 0)
             {
                 int number = random.Next(1, 10);
 
-                spawnX = 18;
-                spawnY = 19;
+            if (faction == "Hero")
+            {
+                if (number % 2 == 0)
+                {
+                    spawnX = 19;
+                    spawnY = 19;
+                    addUnit = new MeleeUnit(spawnX, spawnY, "Hero", '$');
+                }
 
-                    if (number % 2 == 0)
-                    {
-                        int number2 = random.Next(1, 10);
+                if (number % 2 != 0)
+                {
+                    spawnX = 19;
+                    spawnY = 19;
+                    addUnit = new RangedUnit(spawnX, spawnY, "Hero", '^');
+                }
 
-                        if (number2 % 2 == 0)
-                        {
-                            Faction = "Hero";
-                            Symbol = '$';
-                        }
-
-                        if (number2 % 2 != 0)
-                        {
-                            Faction = "Enemy";
-                            Symbol = '%';
-                        }
-
-                    addUnit = new MeleeUnit(spawnX, spawnY, Faction, Symbol);
-
-                    }
-
-                    Xpos = random.Next(1, 20);
-                    Ypos = random.Next(1, 20);
-
-                    if (number % 2 != 0)
-                    {
-                        int number2 = random.Next(1, 10);
-
-                        if (number2 % 2 == 0)
-                        {
-                            Faction = "Hero";
-                            Symbol = '^';
-                        }
-
-                        if (number2 % 2 != 0)
-                        {
-                            Faction = "Enemy";
-                            Symbol = '&';
-                        }
-
-                        addUnit = new RangedUnit(spawnX, spawnY, Faction, Symbol);
-                    }
             }
+
+            if (faction == "Enemy")
+            {
+                if (number % 2 == 0)
+                {
+                    spawnX = 0;
+                    spawnY = 19;
+                    addUnit = new MeleeUnit(spawnX, spawnY, "Enemy", '%');
+                }
+
+                if (number % 2 != 0)
+                {
+                    spawnX = 0;
+                    spawnY = 19;
+                    addUnit = new RangedUnit(spawnX, spawnY, "Enemy", '&');
+                }
+
+            }
+        }
 
             unitsToProduce--;
             return addUnit;

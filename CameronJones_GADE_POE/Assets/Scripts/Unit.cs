@@ -197,9 +197,13 @@ using UnityEngine;
         //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
         public abstract int Move(Unit currentUnit, Unit tempenemyUnit);
+        public abstract int BuildingMove(Unit currentUnit, Building tempBuilding);
         public abstract void Combat(Unit tempenemyUnit);
+        public abstract void BuildingCombat(Building enemyBuilding);
         public abstract bool CheckAttackRange(Unit currentUnit, Unit tempenemyUnit);
+        public abstract bool CheckBuildingRange(Unit currentUnit, Building tempBuilding);
         public abstract Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit);
+        public abstract Building CheckClosestBuilding(Building[] buildingTemp, Unit currentUnit, Building tempBuidling);
         public abstract int RunAway();
         public abstract bool AmDead(Unit currentUnit);
         public abstract void SaveUnit(Unit[] tempUnit);

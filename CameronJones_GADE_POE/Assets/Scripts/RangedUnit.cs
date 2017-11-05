@@ -73,6 +73,31 @@ using UnityEngine;
         return currentUnit.InRange;
     }
 
+    public override bool CheckBuildingRange(Unit currentUnit, Building tempBuilding)
+    {
+        if (currentUnit != null && tempBuilding != null)
+        {
+            int xdiff, ydiff, bigger;
+
+            xdiff = currentUnit.XPos - tempBuilding.Xpos;
+            ydiff = currentUnit.YPos - tempBuilding.Ypos;
+
+            if (Math.Abs(xdiff) > Math.Abs(ydiff))
+            {
+                bigger = Math.Abs(xdiff);
+                if (bigger <= 1)
+                {
+                    currentUnit.InRange = true;
+                }
+                else
+                {
+                    currentUnit.InRange = false;
+                }
+            }
+        }
+        return currentUnit.InRange;
+    }
+
     public override Unit CheckClosestUnit(Unit[] unitTemp, Unit currentUnit, Unit tempenemyunit)
         {
 
@@ -100,12 +125,44 @@ using UnityEngine;
             return tempenemyunit;
         }
 
-        public override void Combat(Unit tempenemyUnit)
+    public override Building CheckClosestBuilding(Building[] buildingTemp, Unit currentUnit, Building tempBuilding)
+    {
+
+        int xdiff, ydiff, totalDiff, smaller = 1000000000;
+
+        for (int i = 0; i < buildingTemp.Length; i++)
+        {
+            if (buildingTemp[i] != null && currentUnit.Faction != buildingTemp[i].Faction)
+            {
+                xdiff = currentUnit.XPos - buildingTemp[i].Xpos;
+                ydiff = currentUnit.YPos - buildingTemp[i].Ypos;
+                totalDiff = Math.Abs(xdiff) + Math.Abs(ydiff);
+                if (totalDiff != 0)
+                {
+                    if (totalDiff < smaller)
+                    {
+                        tempBuilding = buildingTemp[i];
+                        smaller = totalDiff;
+                    }
+                }
+            }
+
+        }
+
+        return tempBuilding;
+    }
+
+    public override void Combat(Unit tempenemyUnit)
         {
             tempenemyUnit.Currenthealth = tempenemyUnit.Currenthealth - this.Attack;
         }
 
-        public override int Move(Unit currentUnit, Unit tempenemyUnit)
+    public override void BuildingCombat(Building enemyBuilding)
+    {
+        enemyBuilding.HP = enemyBuilding.HP - this.Attack;
+    }
+
+    public override int Move(Unit currentUnit, Unit tempenemyUnit)
         {
         int xdiff, ydiff, move = 0;
 
@@ -147,7 +204,49 @@ using UnityEngine;
             return move;
         }
 
-        public override int RunAway()
+    public override int BuildingMove(Unit currentUnit, Building tempBuilding)
+    {
+        int xdiff, ydiff, move = 0;
+
+        if (currentUnit != null && tempBuilding != null)
+        {
+
+
+            xdiff = currentUnit.XPos - tempBuilding.Xpos;
+            ydiff = currentUnit.YPos - tempBuilding.Ypos;
+
+            if (xdiff > ydiff)
+            {
+                if (xdiff > 0 && currentUnit.XPos - 1 != 0)
+                {
+                    move = 1;
+                }
+                else if (currentUnit.XPos + 1 != 20)
+                {
+                    move = 2;
+                }
+            }
+            else
+            {
+                if (ydiff > 0 && currentUnit.YPos - 1 != 0)
+                {
+                    move = 3;
+                }
+                else if (currentUnit.YPos + 1 != 20)
+                {
+                    move = 4;
+                }
+                else
+                {
+                    move = 5;
+                }
+            }
+        }
+
+        return move;
+    }
+
+    public override int RunAway()
         {
             System.Random r = new System.Random();
             int move = r.Next(1, 4);

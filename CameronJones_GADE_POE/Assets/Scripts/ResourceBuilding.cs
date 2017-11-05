@@ -12,7 +12,6 @@ using UnityEngine;
         char resourceType;
         int resourcesPerGameTick;
         int resourcesRemaining = 50;
-        int xPos, yPos, resourceHp, resourceMaxHp = 100;
         System.Random r = new System.Random();
 
 
@@ -50,59 +49,23 @@ using UnityEngine;
                 resourcesRemaining = value;
             }
         }
-        public int XPos {
-            get
-            {
-                return xPos;
-            }
-            set
-            {
-                xPos = value;
-            }
-        }
-        public int YPos {
-            get
-            {
-                return yPos;
-            }
-            set
-            {
-                yPos = value;
-            }
-        }
-    public int ResourceHP
-    {
-        get
-        {
-            return resourceHp;
-        }
-        set
-        {
-            resourceHp = value;
-        }
-    }
+        
+        
+    
 
-    public int ResourceMaxHP
-    {
-        get
-        {
-            return resourceMaxHp;
-        }
-        set
-        {
-            resourceHp = value;
-        }
-    }
+   
 
     //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
-    public ResourceBuilding()
-        {
-            XPos = 0;
-            YPos = 0;
-            Buildingsymbol = '#';
-            resourceHp = resourceMaxHp;
-        }
+    public ResourceBuilding(string faction, int xpos, int ypos)
+    {
+           
+        Buildingsymbol = '#';
+        HP = MaxHP;
+        Faction = faction;
+        Xpos = xpos;
+        Ypos = ypos;
+    }
 
         ~ResourceBuilding()
         {

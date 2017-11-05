@@ -10,7 +10,7 @@ using UnityEngine;
         //**************************************************************************************************************** Variables *************************************************************************************************************************************
         private int xpos;
         private int ypos;
-        private int health;
+        private int hp, maxhp = 100;
         private string faction;
         private char symbol;
         private char buildingSymbol;
@@ -41,16 +41,28 @@ using UnityEngine;
             ypos = value;
         }
     }
-    public int Health
+    public int HP
     {
         get
         {
-            return health;
+            return hp;
         }
 
         set
         {
-            health = value;
+            hp = value;
+        }
+    }
+    public int MaxHP
+    {
+        get
+        {
+            return maxhp;
+        }
+
+        set
+        {
+            maxhp = value;
         }
     }
     public string Faction
@@ -92,15 +104,15 @@ using UnityEngine;
 
     //**************************************************************************************************************** Constructor & Destructor *************************************************************************************************************************************
 
-    /*public Building()
+    public Building()
         {
             //code
-        }*/
+        }
 
-        /*~Building()
+        ~Building()
         {
             //code
-        }*/
+        }
 
         //**************************************************************************************************************** Methods *************************************************************************************************************************************
 

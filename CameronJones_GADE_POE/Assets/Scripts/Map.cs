@@ -11,6 +11,7 @@ using UnityEngine;
         System.Random random = new System.Random();
         char[,] arrMap = new char[20, 20];
         Unit[] arrUnit = new Unit[10];
+        Building[] arrBuilding = new Building[4];
         char Symbol;
         int xpos, ypos;
         string Faction;
@@ -41,12 +42,25 @@ using UnityEngine;
         }
     }
 
+    internal Building[] ArrBuilding
+    {
+        get
+        {
+            return arrBuilding;
+        }
+        set
+        {
+            arrBuilding = value;
+        }
+    }
     //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
     public void PopulateBattlefield()
     {
-        FactoryBuilding factory = new FactoryBuilding();
-        ResourceBuilding resource = new ResourceBuilding();
+        arrBuilding[0] = new FactoryBuilding("Hero", 19, 19);
+        arrBuilding[1] = new FactoryBuilding("Enemy", 0, 19);
+        arrBuilding[2] = new ResourceBuilding("Hero", 0, 0);
+        arrBuilding[3] = new ResourceBuilding("Enemy", 19, 0);
 
         for (int j = 0; j < 20; j++)
         {
@@ -56,8 +70,11 @@ using UnityEngine;
             }
         }
 
-        arrMap[0, 0] = resource.Buildingsymbol;
-        arrMap[19, 19] = factory.Buildingsymbol;
+        
+        arrMap[19, 19] = arrBuilding[0].Buildingsymbol;
+        arrMap[0, 19] = arrBuilding[1].Buildingsymbol;
+        arrMap[0, 0] = arrBuilding[2].Buildingsymbol;
+        arrMap[19, 0] = arrBuilding[3].Buildingsymbol;
 
         for (int i = 0; i < ArrUnit.Length; i++)
         {
@@ -193,8 +210,8 @@ using UnityEngine;
             int currentx = unit.XPos;
             int currenty = unit.YPos;
 
-           //arrMap[currentx, currenty] = ',';
-            //arrMap[destx, desty] = sym;
+           arrMap[currentx, currenty] = ',';
+           arrMap[destx, desty] = sym;
         }
 
         public void UpdateUnit(Unit unit, int newx, int newy)

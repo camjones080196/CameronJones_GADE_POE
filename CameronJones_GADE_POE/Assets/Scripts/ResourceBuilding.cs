@@ -67,29 +67,28 @@ using UnityEngine;
         Ypos = ypos;
     }
 
-        ~ResourceBuilding()
-        {
 
-        }
 
-        //**************************************************************************************************************** Methods *************************************************************************************************************************************
+    //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
-        public override string ToString()
-        {
-            return "Resource type: " + resourceType;
-        }
+    public override string ToString()
+    {
+        return Xpos + ", " + Ypos + ", " + HP + ", " + Faction + ", " + Buildingsymbol;
+    }
 
-    public bool AmDead(int HP)
+    public override bool AmDead(int HP)
     {
         bool dead;
 
         if (HP <= 0)
         {
             dead = true;
+            Debug.Log("I am dead.");
         }
         else
         {
             dead = false;
+            Debug.Log("I am not dead.");
         }
 
         return dead;
@@ -101,5 +100,10 @@ using UnityEngine;
             resourcesPerGameTick = r.Next(1, 3);
             resourcesRemaining = resourcesRemaining - resourcesPerGameTick;
         }
+
+    public override Unit UnitSpawn(string faction)
+    {
+        throw new NotImplementedException();
     }
+}
 

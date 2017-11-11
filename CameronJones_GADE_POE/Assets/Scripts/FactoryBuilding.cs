@@ -75,35 +75,34 @@ using UnityEngine;
         Ypos = ypos;
         }
 
-        ~FactoryBuilding()
-        {
-
-        }
+       
 
         //**************************************************************************************************************** Methods *************************************************************************************************************************************
 
         public override string ToString()
         {
-            return Xpos + ", " + Ypos + ", " + HP + ", " + Faction + ", " + Symbol;
+            return Xpos + ", " + Ypos + ", " + HP + ", " + Faction + ", " + Buildingsymbol;
         }
 
-    public bool AmDead(int HP)
+    public override bool AmDead(int HP)
     {
         bool dead;
 
         if (HP <= 0)
         {
             dead = true;
+            Debug.Log("I am dead.");
         }
         else
         {
             dead = false;
+            Debug.Log("I am not dead.");
         }
 
         return dead;
     }
 
-    public Unit UnitSpawn(string faction)
+    public override Unit UnitSpawn(string faction)
         {
             if(unitsToProduce > 0)
             {

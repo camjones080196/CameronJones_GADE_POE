@@ -106,22 +106,21 @@ using UnityEngine;
 
                 else if (number % 2 != 0 && arrMap[xpos, ypos] == ',')
                 {
-                    int number2 = random.Next(1, 10);
+                    int number3 = random.Next(1, 10);
 
-                    if (number2 % 2 == 0)
+                    if (number3 % 2 == 0)
                     {
                         Faction = "Hero";
                         Symbol = '^';
                     }
 
-                    if (number2 % 2 != 0)
+                    if (number3 % 2 != 0)
                     {
                         Faction = "Enemy";
                         Symbol = '&';
                     }
 
-                    xpos = random.Next(1, 20);
-                    ypos = random.Next(1, 20);
+                    
 
                     ArrUnit[i] = new RangedUnit(xpos, ypos, Faction, Symbol);
                     arrMap[xpos, ypos] = Symbol;
@@ -138,109 +137,9 @@ using UnityEngine;
             }
         }
 
-
-        /*for (int i = 0; i < ArrUnit.Length; i++)
-        {
-            int number = random.Next(1, 10);
-            xpos = random.Next(1, 20);
-            ypos = random.Next(1, 20);
-
-            if (xpos + ypos != 0 && xpos + ypos != 38)
-            {
-                if (number % 2 == 0)
-                {
-                    int number2 = random.Next(1, 10);
-
-                    if (number2 % 2 == 0)
-                    {
-                        Faction = "Hero";
-                        Symbol = '$';
-                    }
-
-                    if (number2 % 2 != 0)
-                    {
-                        Faction = "Enemy";
-                        Symbol = '%';
-                    }
-
-                    ArrUnit[i] = new MeleeUnit(xpos, ypos, Faction, Symbol);
-                    arrMap[xpos, ypos] = Symbol;
-                }
-
-                else if (number % 2 != 0)
-                {
-                    int number2 = random.Next(1, 10);
-
-                    if (number2 % 2 == 0)
-                    {
-                        Faction = "Hero";
-                        Symbol = '^';
-                    }
-
-                    if (number2 % 2 != 0)
-                    {
-                        Faction = "Enemy";
-                        Symbol = '&';
-                    }
-
-                    xpos = random.Next(1, 20);
-                    ypos = random.Next(1, 20);
-
-                    ArrUnit[i] = new RangedUnit(xpos, ypos, Faction, Symbol);
-                    arrMap[xpos, ypos] = Symbol;
-                }
-                else
-                {
-                    i--;
-                }
-
-            }
-            else
-            {
-                i--;
-            }
-
-
-        }*/
     }
 
-        public void UnitMove(Unit unit, int destx, int desty)
-        {
-            char sym = unit.Symbol;
-            int currentx = unit.XPos;
-            int currenty = unit.YPos;
-
-           arrMap[currentx, currenty] = ',';
-           arrMap[destx, desty] = sym;
-        }
-
-        public void UpdateUnit(Unit unit, int newx, int newy)
-        {
-            unit.XPos = newx;
-            unit.YPos = newy;
-        }
-
-        /*public string redrawMap()
-        {
-            string gameWorld = "";
-
-            for (int i = 0; i < arrMap.GetLength(0); i++)
-            {
-                for (int j = 0; j < arrMap.GetLength(1); j++)
-                {
-                    gameWorld += arrMap[i, j] + "  ";
-                }
-
-                gameWorld += Environment.NewLine;
-            }
-
-            return gameWorld;
-        }*/
-
        
-
-
-        
 
     }
 

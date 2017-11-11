@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float speed = 5f;
+        float speed = 9f;
 
         mouseMove(speed);
         zoom();
@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour {
 
         if(scroll != 0.0f)
         {
-            targetOrtho = scroll * zoomSpeed;
+            targetOrtho -= scroll * zoomSpeed;
             targetOrtho = Mathf.Clamp(targetOrtho, minOrtho, maxOrtho);
         }
 
